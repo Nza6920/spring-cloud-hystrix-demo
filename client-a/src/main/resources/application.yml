@@ -1,0 +1,17 @@
+server:
+  port: 7018
+  servlet:
+    context-path: /api/clienta
+
+eureka:
+  instance:
+    # 注册服务的 IP 而不是名称
+    prefer-ip-address: true
+  client:
+    # 注册自身到 eureka
+    register-with-eureka: true
+    # 在本地缓存注册表 每隔 30s 自动刷新服务
+    fetch-registry: true
+    service-url:
+      # 配置注册中心地址
+      defaultZone: http://localhost:7016/eureka/

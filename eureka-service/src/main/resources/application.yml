@@ -1,0 +1,15 @@
+server:
+  port: 7016
+
+eureka:
+  client:
+    # 不对自身进行注册
+    register-with-eureka: false
+    # 不在本地缓存注册表信息
+    fetch-registry: false
+    service-url:
+      # 配置注册中心地址
+      defaultZone: http://localhost:7016/eureka/
+  server:
+    # 服务器接受请求之前等待的初始时间
+    wait-time-in-ms-when-sync-empty: 0
