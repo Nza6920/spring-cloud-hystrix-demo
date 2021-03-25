@@ -5,6 +5,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.niu.spring.client.ClientBRestTemplateClient;
+import com.niu.spring.utils.UserContextHolder;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class ClientBService {
     )
     public Map<String, Object> findClientbInfoByTimeOut() {
 
-        log.info("断路器");
+        log.info("断路器，当前IP: {}", UserContextHolder.getContext().getCurrentIp());
 
         // 睡眠 6s
         sleep6s();
@@ -70,7 +71,7 @@ public class ClientBService {
     @HystrixCommand(fallbackMethod = "fallback")
     public Map<String, Object> findClientbInfoByBack() {
 
-        log.info("后备");
+        log.info("后备, 当前IP: {}", UserContextHolder.getContext().getCurrentIp());
 
         // 睡眠 6s
         sleep6s();
@@ -104,7 +105,7 @@ public class ClientBService {
     )
     public Map<String, Object> findClientbInfoByBulk() {
 
-        log.info("舱壁");
+        log.info("舱壁, 当前IP: {}", UserContextHolder.getContext().getCurrentIp());
 
         Map<String, Object> res = Maps.newHashMap();
 
